@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Weatherly — Smart Weather</title>
+
+  <meta name="description"
+    content="Beautiful responsive weather dashboard with live weather, hourly forecast and 7-day forecast." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  
+</head>
+
+<body>
+
+  <!-- Background -->
+  <div class="background-orb orb-one"></div>
+  <div class="background-orb orb-two"></div>
+
+  <!-- Loading -->
+  <div class="loader" id="loader">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+
+    <div class="logo">
+      <div class="logo-icon">☁️</div>
+      Weatherly
+    </div>
+
+    <div class="nav-actions">
+
+      <button class="icon-btn" id="locationBtn" title="Use my location">
+        📍
+      </button>
+
+      <button class="icon-btn" id="unitBtn" title="Change temperature unit">
+        °F
+      </button>
+
+      <button class="icon-btn" id="refreshBtn" title="Refresh weather">
+        ↻
+      </button>
+
+    </div>
+
+  </nav>
+
+  <main class="container">
+
+    <!-- Hero -->
+    <section class="hero">
+
+      <h1>Weather, beautifully simplified.</h1>
+
+      <p>
+        Get real-time weather conditions, hourly forecasts,
+        7-day predictions and detailed atmospheric information.
+      </p>
+
+      <!-- Search -->
+      <form class="search-wrapper" id="searchForm">
+
+        <input type="search" id="cityInput" placeholder="Search city... e.g. Delhi, Mumbai, London"
+          autocomplete="off" />
+
+        <button class="search-btn" type="submit">
+          Search
+        </button>
+
+      </form>
+
+      <div class="error" id="error"></div>
+
+    </section>
+
+    <!-- Current Weather -->
+    <section class="current-weather">
+
+      <!-- Main -->
+      <div class="weather-main">
+
+        <div class="location">
+          📍
+          <span id="locationName">Delhi,Delhi, India</span>
+        </div>
+
+        <div class="temperature">
+
+          <div class="weather-icon" id="weatherIcon">
+            ☀️
+          </div>
+
+          <div>
+            <h2 id="temperature">
+              --°
+            </h2>
+
+            <span id="unitLabel">
+              Celsius
+            </span>
+          </div>
+
+        </div>
+
+        <div class="weather-description" id="weatherDescription">
+          Loading weather...
+        </div>
+
+        <div class="feels" id="feelsLike">
+          Feels like --°
+        </div>
+
+      </div>
+
+      <!-- Details -->
+      <div class="weather-details">
+
+        <div class="detail">
+          <div class="detail-icon">💧</div>
+          <div class="detail-label">Humidity</div>
+          <div class="detail-value" id="humidity">
+            --%
+          </div>
+        </div>
+
+        <div class="detail">
+          <div class="detail-icon">💨</div>
+          <div class="detail-label">Wind Speed</div>
+          <div class="detail-value" id="windSpeed">
+            -- km/h
+          </div>
+        </div>
+
+        <div class="detail">
+          <div class="detail-icon">🌅</div>
+          <div class="detail-label">Sunrise</div>
+          <div class="detail-value" id="sunrise">
+            --
+          </div>
+        </div>
+
+        <div class="detail">
+          <div class="detail-icon">🌇</div>
+          <div class="detail-label">Sunset</div>
+          <div class="detail-value" id="sunset">
+            --
+          </div>
+        </div>
+
+        <div class="detail">
+          <div class="detail-icon">🌧️</div>
+          <div class="detail-label">Rain Chance</div>
+          <div class="detail-value" id="rainChance">
+            --%
+          </div>
+        </div>
+
+        <div class="detail">
+          <div class="detail-icon">🌬️</div>
+          <div class="detail-label">Wind Direction</div>
+          <div class="detail-value" id="windDirection">
+            --
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Hourly -->
+    <section class="section">
+
+      <div class="section-title">
+
+        <h2>Hourly Forecast</h2>
+
+        <span>
+          Next 24 hours
+        </span>
+
+      </div>
+
+      <div class="hourly" id="hourly"></div>
+
+    </section>
+
+    <!-- 7 Day -->
+    <section class="section">
+
+      <div class="section-title">
+
+        <h2>7-Day Forecast</h2>
+
+        <span>
+          Extended forecast
+        </span>
+
+      </div>
+
+      <div class="forecast" id="forecast"></div>
+
+    </section>
+
+    <!-- Popular Cities -->
+    <section class="section">
+
+      <div class="section-title">
+
+        <h2>Popular Cities</h2>
+
+        <span>
+          Quick weather
+        </span>
+
+      </div>
+
+      <div class="cities">
+
+        <div class="city-card" data-city="Delhi">
+          <h3>🇮🇳 Delhi</h3>
+          <p>India</p>
+        </div>
+
+        <div class="city-card" data-city="Mumbai">
+          <h3>🇮🇳 Mumbai</h3>
+          <p>India</p>
+        </div>
+
+        <div class="city-card" data-city="Bangalore">
+          <h3>🇮🇳 Bangalore</h3>
+          <p>India</p>
+        </div>
+
+        <div class="city-card" data-city="London">
+          <h3>🇬🇧 London</h3>
+          <p>United Kingdom</p>
+        </div>
+
+        <div class="city-card" data-city="New York">
+          <h3>🇺🇸 New York</h3>
+          <p>United States</p>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    Weatherly © 2026 · Built with Farhan Habib's Weather App
+  </footer>
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
